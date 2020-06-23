@@ -19,9 +19,9 @@ RUN yum -y update \
     && yum clean all \
     && rm -rf /var/cache/yum
 
-RUN dnf install epel-release
-RUN dnf config-manager --set-enabled PowerTools
-RUN yum install R
+RUN dnf install epel-release -y
+RUN dnf config-manager --set-enabled PowerTools -y
+RUN yum install R -y
 
 # Install the latest Miniconda with Python 3 and update everything.
 # RUN curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o miniconda.sh \
