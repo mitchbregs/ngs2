@@ -20,6 +20,8 @@ RUN yum -y update \
     && rm -rf /var/cache/yum
 
 RUN yum install epel-release -y
+RUN yum install texinfo-tex -y
+RUN yum install openblas-devel -y
 RUN yum install R-core-devel -y
 RUN yum install R-devel -y
 RUN yum install R -y
