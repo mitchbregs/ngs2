@@ -17,6 +17,6 @@ RUN conda update -n base -c defaults conda \
 
 ADD . /app
 
-ENV HYPOTHESIS=1
+ENV HYPOTHESIS=15
 
-CMD /opt/conda/envs/ngs2/bin/Rscript h${HYPOTHESIS}.R
+CMD /opt/conda/envs/ngs2/bin/Rscript NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.rmd
