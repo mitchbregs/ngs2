@@ -14,7 +14,9 @@ RUN conda update -n base -c defaults conda \
  && conda install -c anaconda libcurl \
  && conda install -c anaconda make \
  && conda install -c r r-mvtnorm \
- && conda install -c r r-rcurl
+ && conda install -c r r-rcurl \
+ && conda install -c conda-forge gcc
+
 
 ADD . /app
 

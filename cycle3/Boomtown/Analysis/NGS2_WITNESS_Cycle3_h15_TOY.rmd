@@ -21,7 +21,6 @@ od <- paste(getwd(), "/output", sep="")
 if (!require("pacman")) install.packages("pacman", repos='http://cran.us.r-project.org')
 library ("pacman")
 pacman::p_load(rstan, rstanarm, ggplot2, Hmisc, httr, bridgesampling, DT, dplyr, bayesplot, knitr, lme4, RCurl, formatR, caret, pROC, formatR, foreach, doParallel, forcats, tidyr, car, evaluate)
-library(RCurl)
 opts_knit$set(root.dir = od)
 # download scripts and data
 dlScripts <- function (scriptNames) {
