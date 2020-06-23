@@ -1,10 +1,10 @@
 FROM centos:7
 
-LABEL maintainer="teake.nutma@gmail.com"
-LABEL description="Builds linux-64 conda packages. CentOS 7 + miniconda + conda-build."
+# LABEL maintainer="teake.nutma@gmail.com"
+# LABEL description="Builds linux-64 conda packages. CentOS 7 + miniconda + conda-build."
 
 # Configuration options.
-ARG CONDA_PREFIX=/opt/conda
+# ARG CONDA_PREFIX=/opt/conda
 
 # Set a UTF-8 locale. Useful for running Python 3 programs.
 ENV LANG en_US.utf-8
@@ -19,19 +19,22 @@ RUN yum -y update \
     && yum clean all \
     && rm -rf /var/cache/yum
 
+RUN yum install epel-release
+RUN yum install R
+
 # Install the latest Miniconda with Python 3 and update everything.
-RUN curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o miniconda.sh \
-    && sh miniconda.sh -b -p ${CONDA_PREFIX} \
-    && rm miniconda.sh \
-    && ${CONDA_PREFIX}/bin/conda config --set show_channel_urls True \
-    && ${CONDA_PREFIX}/bin/conda config --set path_conflict prevent \
-    && ${CONDA_PREFIX}/bin/conda update -c conda-forge --yes --all \
-    && ${CONDA_PREFIX}/bin/conda install -c conda-forge --yes conda-build conda-verify coverage coverage-fixpaths \
-    && ${CONDA_PREFIX}/bin/conda clean -tipy \
-    && ${CONDA_PREFIX}/bin/conda-build purge-all \
-    # conda init wants to edit ~/.bashrc, but if that doesn't exist it fails.
-    && touch ~/.bashrc \
-    && ${CONDA_PREFIX}/bin/conda init bash
+# RUN curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o miniconda.sh \
+#     && sh miniconda.sh -b -p ${CONDA_PREFIX} \
+#     && rm miniconda.sh \
+#     && ${CONDA_PREFIX}/bin/conda config --set show_channel_urls True \
+#     && ${CONDA_PREFIX}/bin/conda config --set path_conflict prevent \
+#     && ${CONDA_PREFIX}/bin/conda update -c conda-forge --yes --all \
+#     && ${CONDA_PREFIX}/bin/conda install -c conda-forge --yes conda-build conda-verify coverage coverage-fixpaths \
+#     && ${CONDA_PREFIX}/bin/conda clean -tipy \
+#     && ${CONDA_PREFIX}/bin/conda-build purge-all \
+#     # conda init wants to edit ~/.bashrc, but if that doesn't exist it fails.
+#     && touch ~/.bashrc \
+#     && ${CONDA_PREFIX}/bin/conda init bash
 
 # # Add a shell script that activates conda ...
 # COPY entrypoint.sh /opt/docker/bin/entrypoint.sh
@@ -44,10 +47,10 @@ RUN curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 
 WORKDIR /app
 
-COPY environment.yaml /tmp/environment.yaml
+# COPY environment.yaml /tmp/environment.yaml
 
-RUN ${CONDA_PREFIX}/bin/conda update -n base -c defaults conda
-RUN ${CONDA_PREFIX}/bin/conda env update -f /tmp/environment.yaml
+# RUN ${CONDA_PREFIX}/bin/conda update -n base -c defaults conda
+# RUN ${CONDA_PREFIX}/bin/conda env update -f /tmp/environment.yaml
 # RUN ${CONDA_PREFIX}/bin/conda install -c conda-forge pandoc
 # RUN ${CONDA_PREFIX}/bin/conda install -c anaconda libcurl
 # RUN ${CONDA_PREFIX}/bin/conda install -c anaconda make
@@ -59,4 +62,4 @@ ADD . /app
 
 ENV HYPOTHESIS=15
 
-CMD /opt/conda/envs/ngs2/bin/Rscript -e "install.packages('rmarkdown', repos='http://cran.us.r-project.org'); library(rmarkdown); render('NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.rmd', output_file='output/NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.html')"
+CMD Rscript -e "install.packages('rmarkdown', repos='http://cran.us.r-project.org'); library(rmarkdown); render('NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.rmd', output_file='output/NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.html')"
