@@ -2,7 +2,6 @@ FROM continuumio/conda_builder_linux:latest
 
 LABEL maintainer="Pablo Diego-Rosell c_Pablo_Diego-Rosell@gallup.co.uk"
 
-RUN mkdir /app
 WORKDIR /app
 
 COPY environment.yaml /tmp/environment.yaml
