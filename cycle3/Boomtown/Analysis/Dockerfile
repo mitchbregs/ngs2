@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:8
 
 # LABEL maintainer="teake.nutma@gmail.com"
 # LABEL description="Builds linux-64 conda packages. CentOS 7 + miniconda + conda-build."
@@ -19,7 +19,8 @@ RUN yum -y update \
     && yum clean all \
     && rm -rf /var/cache/yum
 
-RUN yum install epel-release
+RUN dnf install epel-release
+RUN dnf config-manager --set-enabled PowerTools
 RUN yum install R
 
 # Install the latest Miniconda with Python 3 and update everything.
