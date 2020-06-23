@@ -20,6 +20,7 @@ RUN yum -y update \
     && rm -rf /var/cache/yum
 
 RUN yum install epel-release -y
+RUN dnf install 'dnf-command(config-manager)'
 RUN dnf config-manager --enable PowerTools -y
 RUN yum install R -y
 
