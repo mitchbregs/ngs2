@@ -1,4 +1,4 @@
-FROM centos:8
+FROM rocker/verse:latest
 
 # LABEL maintainer="teake.nutma@gmail.com"
 # LABEL description="Builds linux-64 conda packages. CentOS 7 + miniconda + conda-build."
@@ -14,16 +14,16 @@ FROM centos:8
 # bzip2 is required for installing conda.
 # git and openssh-clients are required for cloning git repositories in recipes.
 # patch is required for applying patches in recipes.
-RUN yum -y update \
-    && yum -y install bzip2 git openssh-clients patch \
-    && yum clean all \
-    && rm -rf /var/cache/yum
+# RUN yum -y update \
+#     && yum -y install bzip2 git openssh-clients patch \
+#     && yum clean all \
+#     && rm -rf /var/cache/yum
 
-RUN yum install epel-release -y
-RUN dnf install 'dnf-command(config-manager)' -y
-RUN dnf config-manager --enable PowerTools -y
-RUN yum install R -y
-RUN yum install pandoc -y
+# RUN yum install epel-release -y
+# RUN dnf install 'dnf-command(config-manager)' -y
+# RUN dnf config-manager --enable PowerTools -y
+# RUN yum install R -y
+# RUN yum install pandoc -y
 
 # Install the latest Miniconda with Python 3 and update everything.
 # RUN curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o miniconda.sh \
@@ -64,7 +64,6 @@ WORKDIR /app
 ADD . /app
 
 ENV HYPOTHESIS=15
-
 
 RUN Rscript -e "install.packages('rmarkdown', repos='http://cran.us.r-project.org');"
 
