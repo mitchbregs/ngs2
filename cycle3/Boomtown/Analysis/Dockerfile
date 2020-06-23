@@ -56,4 +56,6 @@ ADD . /app
 
 ENV HYPOTHESIS=15
 
+RUN Rscript -e "install.packages('rmarkdown', repos='http://cran.us.r-project.org')"
+
 CMD Rscript -e "library(rmarkdown); render('NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.rmd', output_file='output/NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.html')"
