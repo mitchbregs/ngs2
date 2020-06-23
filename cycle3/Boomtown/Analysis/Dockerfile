@@ -1,4 +1,4 @@
-FROM continuumio/anaconda
+FROM continuumio/miniconda3
 
 LABEL maintainer="Pablo Diego-Rosell c_Pablo_Diego-Rosell@gallup.co.uk"
 
@@ -13,7 +13,9 @@ RUN conda update -n base -c defaults conda \
  && conda install -c conda-forge pandoc \
  && conda install -c anaconda libcurl \
  && conda install -c anaconda make \
- && conda install -c r r-mvtnorm
+ && conda install -c r r-mvtnorm \
+ && conda install r-png r-rcurl
+
 ADD . /app
 
 ENV HYPOTHESIS=15
