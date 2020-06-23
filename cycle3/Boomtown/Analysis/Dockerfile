@@ -1,4 +1,4 @@
-FROM continuumio/miniconda3
+FROM continuumio/conda_builder_linux
 
 LABEL maintainer="Pablo Diego-Rosell c_Pablo_Diego-Rosell@gallup.co.uk"
 
