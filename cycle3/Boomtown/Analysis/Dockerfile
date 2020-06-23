@@ -59,4 +59,4 @@ ADD . /app
 
 ENV HYPOTHESIS=15
 
-CMD /opt/conda/envs/ngs2/bin/Rscript -e "library(rmarkdown); render('NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.rmd', output_file='output/NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.html')"
+CMD /opt/conda/envs/ngs2/bin/Rscript -e "install.packages('rmarkdown', repos='http://cran.us.r-project.org'); library(rmarkdown); render('NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.rmd', output_file='output/NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.html')"
