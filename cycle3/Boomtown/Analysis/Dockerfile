@@ -7,8 +7,8 @@ FROM centos:8
 # ARG CONDA_PREFIX=/opt/conda
 
 # Set a UTF-8 locale. Useful for running Python 3 programs.
-ENV LANG en_US.utf-8
-ENV LC_ALL en_US.utf-8
+# ENV LANG en_US.utf-8
+# ENV LC_ALL en_US.utf-8
 
 # Fetch updates and install dependencies.
 # bzip2 is required for installing conda.
