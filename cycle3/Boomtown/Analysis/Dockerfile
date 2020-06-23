@@ -23,6 +23,7 @@ RUN yum install epel-release -y
 RUN dnf install 'dnf-command(config-manager)' -y
 RUN dnf config-manager --enable PowerTools -y
 RUN yum install R -y
+RUN yum install pandoc -y
 
 # Install the latest Miniconda with Python 3 and update everything.
 # RUN curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o miniconda.sh \
@@ -64,4 +65,7 @@ ADD . /app
 
 ENV HYPOTHESIS=15
 
-CMD Rscript -e "install.packages('rmarkdown', repos='http://cran.us.r-project.org'); library(rmarkdown); render('NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.rmd', output_file='output/NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.html')"
+
+RUN Rscript -e "install.packages('rmarkdown', repos='http://cran.us.r-project.org');"
+
+CMD Rscript -e "rmarkdown::render('NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.rmd', output_file='output/NGS2_WITNESS_Cycle3_h${HYPOTHESIS}_TOY.html')"
