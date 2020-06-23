@@ -46,15 +46,15 @@ WORKDIR /app
 
 COPY environment.yaml /tmp/environment.yaml
 
-RUN ${CONDA_PREFIX}/bin/conda update -n base -c defaults conda \
- && ${CONDA_PREFIX}/bin/conda env create -f /tmp/environment.yaml \
- && ${CONDA_PREFIX}/bin/conda shell.posix activate ngs2 \
- && ${CONDA_PREFIX}/bin/conda install -c conda-forge pandoc \
- && ${CONDA_PREFIX}/bin/conda install -c anaconda libcurl \
- && ${CONDA_PREFIX}/bin/conda install -c anaconda make \
- && ${CONDA_PREFIX}/bin/conda install -c r r-mvtnorm \
- && ${CONDA_PREFIX}/bin/conda install r-png r-rcurl \
- && ${CONDA_PREFIX}/bin/conda install -c anaconda pandoc
+RUN ${CONDA_PREFIX}/bin/conda update -n base -c defaults conda
+RUN ${CONDA_PREFIX}/bin/conda env create -f /tmp/environment.yaml
+RUN ${CONDA_PREFIX}/bin/conda shell.posix activate ngs2
+RUN ${CONDA_PREFIX}/bin/conda install -c conda-forge pandoc
+RUN ${CONDA_PREFIX}/bin/conda install -c anaconda libcurl
+RUN ${CONDA_PREFIX}/bin/conda install -c anaconda make
+RUN ${CONDA_PREFIX}/bin/conda install -c r r-mvtnorm
+RUN ${CONDA_PREFIX}/bin/conda install r-png r-rcurl
+RUN ${CONDA_PREFIX}/bin/conda install -c anaconda pandoc
 
 ADD . /app
 
