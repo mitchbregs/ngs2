@@ -14,6 +14,7 @@ ENV BUILD_DEPS \
 
 ENV PERSISTENT_DEPS \
     R-mathlib \
+    g++ \
     gcc \
     gfortran \
     icu-dev \
