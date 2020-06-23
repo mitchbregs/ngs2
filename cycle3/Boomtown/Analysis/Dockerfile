@@ -8,7 +8,6 @@ FROM jrnold/rstan
 #COPY NGS2_WITNESS_Cycle2_Notebook.Rmd /home/rstudio/
 WORKDIR /report
 
-
 RUN R -e "options(repos = \
   list(CRAN = 'http://mran.revolutionanalytics.com/snapshot/2019-02-06/')); \
   install.packages('pacman', dependencies=TRUE); \
@@ -23,5 +22,7 @@ RUN R -e "options(repos = \
 # Set the container to run `Rscript --vanilla ` by default
 ENTRYPOINT ["/usr/local/bin/Rscript", "--vanilla"]
 
+ADD . /report
+
 # Set the `example_report.R data.csv` as the default script to run with ENTRYPOINT's Rscript
-CMD ["/report/ngs2.R"]
+CMD ["ngs2.R"]
