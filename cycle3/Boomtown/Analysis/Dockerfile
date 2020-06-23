@@ -14,7 +14,7 @@ RUN conda update -n base -c defaults conda \
  && conda install -c anaconda libcurl \
  && conda install -c anaconda make \
  && conda install -c r r-mvtnorm \
- && conda install -c msarahan libgcc
+ && conda install gcc
 
 ADD . /app
 
