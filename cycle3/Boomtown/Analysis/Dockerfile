@@ -13,10 +13,7 @@ RUN conda update -n base -c defaults conda \
  && conda install -c conda-forge pandoc \
  && conda install -c anaconda libcurl \
  && conda install -c anaconda make \
- && conda install -c r r-mvtnorm \
- && conda install -c r r-rcurl \
- && conda install -c conda-forge/label/cf202003 gcc
-
+ && conda install -c r r-mvtnorm
 
 ADD . /app
 
