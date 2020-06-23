@@ -1,4 +1,4 @@
-FROM continuumio/miniconda3
+FROM continuumio/anaconda
 
 LABEL maintainer="Pablo Diego-Rosell c_Pablo_Diego-Rosell@gallup.co.uk"
 
@@ -14,7 +14,7 @@ RUN conda update -n base -c defaults conda \
  && conda install -c anaconda libcurl \
  && conda install -c anaconda make \
  && conda install -c r r-mvtnorm \
- && conda install gcc
+ && conda install -c conda-forge gcc
 
 ADD . /app
 
