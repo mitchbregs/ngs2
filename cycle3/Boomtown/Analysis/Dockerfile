@@ -42,9 +42,10 @@ RUN apt-get update \
                 r-cran-formatr \
                 r-cran-ggplot2 \
                 r-cran-knitr \
-		r-cran-rmarkdown \
+		            r-cran-rmarkdown \
                 r-cran-runit \
                 r-cran-testthat \
+                r-cran-rcurl \
                 texinfo \
                 texlive-fonts-extra \
                 texlive-fonts-recommended \
