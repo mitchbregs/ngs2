@@ -60,4 +60,7 @@ RUN apt-get update \
         && cd /usr/local/bin \
         && ln -s /usr/lib/R/site-library/littler/examples/render.r .
 
+WORKDIR /app
+ADD . /app
+
 CMD ["bash"]
